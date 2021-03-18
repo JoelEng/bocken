@@ -1,0 +1,169 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[swedish]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{\vspace{-3.0cm}Bocken!}
+\author{Joel Engström}
+
+\begin{document}
+\maketitle
+
+\section{Allmäna tips}
+\begin{itemize}
+\item
+  Glöm inte att kontrollera svaret!
+\item 
+  Frekvensfunktion: $H(i\omega)$
+\item 
+  Amplitudfunktion: $A(\omega)=|H(i\omega)|$
+\item 
+  Fasfunktion:      $\phi(\omega)=arg(H(i\omega))$
+\item
+  Överföringsfunktionen $H(s)$ är frekvensfunktionen $H(i\omega)$ av $s$
+\item
+  Överföringsfunktionen $H(s)$ är Laplace av impulssvaret $h(t)$.
+\item
+  Impulssvaret $h(t)$ är derivatan av stegsvaret
+\item
+  $h(t) * f(t) = y(t)$, där $f(t)$ är insignalen och $y(t)$ är utsignalen
+\item
+  $H(i\omega)=A(\omega)e^{i\phi(\omega)}$
+\item
+  När egenvektorer beräknas, nämn alltid att $t \ne 0$
+\item
+  $tr(A)$ kan användas för att ta reda på ett element på diagonalen eller ett egenvärde. Exempelvis $tr(A) - \lambda_1 = \lambda_2$ för en $2 \times 2$ -matris
+\end{itemize}
+
+\section{Faltning, $\theta(t)$ och $\delta(t)$}
+\begin{itemize}
+\item
+  $f(t) * g(t) = \displaystyle\int_0^t f(t - \tau)g(\tau)d\tau$
+\item
+  $\delta(t-a) * f = f * \delta(t-a) = f(t-a)$
+\item
+  $|t|=2t\theta(t)-t$
+\item
+  $\displaystyle\int f(t)\theta(t-a)dt=(F(t)-F(a))\theta(t-a)$
+\end{itemize}
+  
+\section{System}
+\begin{itemize}
+\item
+  Ett system är linjärt om $S(af + bg) = aSf + bSg$
+\item
+  Ett system är tidsinvariant om en förskjutning i insignalen ger motsvarande förskjutning i utsignalen. $Sf(t) = y(t)$ så $Sf(t - \tau ) = y(t - \tau )$
+\item
+  Ett linjärt tidsinvariant system är kausalt om $h(t) = 0$ för alla $t < 0$
+\item
+  $S$ är ett lineärt tidsinvariant system. Kvoten $H(s) = \frac{S(e^{st})}{e^{st}}$ är då överföringsfunktionen
+\item
+  Ett system är stabilt om varje begränsad insignal ger upphov till en begränsad utsignal
+\item
+  Om $H(s) = \frac{Q(s)}{P(s)}$ är systemet stabilt om:
+  \begin{itemize}
+    \item $deg(Q(s)) \le deg(P(s))$ OCH
+    \item För varje pol $s_j$ gäller $Re(s_j) < 0$ då $P(s)$ skrivs om som en produkt av termer på formen $(s-s_j)$
+  \end{itemize}
+\item
+  För ett homogent system $X' = AX$ med diagonaliserbar matris $A$ gäller
+  \begin{equation}
+    X =
+    \begin{bmatrix}
+      x_1 \\
+      x_2
+    \end{bmatrix}
+    = C_1 e^{\lambda_1 t} s_1 + C_2 e^{\lambda_2 t} s_2
+  \end{equation}
+  där $s_1$ och $s_2$ är egenvektorer till egenvärdena $\lambda_1$ respektive $\lambda_2$
+\end{itemize}
+
+\section{Kvadratiska matriser}
+\begin{itemize}
+\item
+  $e^{At}=Se^{Dt}S^{-1}$
+\item 
+  $D=S^{-1}AS \Leftrightarrow A=SDS^{-1}$
+\item
+  $det(A) = \lambda_1\lambda_2 \cdots \lambda_n$
+\item
+  $e^0 = I$
+\item
+  $e^{t_1 A}e^{t_2 A} = e^{(t_1 + t_2) A}$
+\item
+  $(e^{tA})^{-1} = e^{-tA}$
+\item
+  $(e^{tA})' = Ae^{tA} = e^{tA}A$
+\item
+  $\displaystyle\int e^{tA}dt = A^{-1}e^{tA} = e^{tA}A^{-1}$ om $a^{-1}$ existerar
+\item
+  $det(A) \geq 0 \Rightarrow$ A är stabil
+\item
+  $det(A) = 0 \Rightarrow$ A är neutralt stabil
+\item
+  En matris är inverterbar då $det(A) \ne 0$
+\item
+  En matris är ortogonal om $Q^{-1} = Q^T$
+\item
+  Något $\lambda_i=0 \Rightarrow det(A)=0 \Rightarrow A$ är ej inverterbar $\Rightarrow A$ är ej ortogonal
+\item
+  Om $Q$ är ortogonal gäller $QQ^T = I$, alltså måste $Q$ vara normerad
+\item
+  $\lambda^2 - tr(A)\lambda  + det(A) = 0$ för $2\times 2$ -matriser (Funkar bra för att dubbelkolla ditt resultat)
+\item
+  Om $tr(A)<0$ så måste minst ett av egenvärdena vara mindre än noll
+\item
+  Gausseliminering av matrisen $K$ så att denna har 1:or diagonalt $\Rightarrow$ $d_i$ är det man delar respektive rad med för att få en etta på diagonalen
+\item
+  Begynnelsevärdesproblemet $X'=AX$, $ X(a)=
+  \begin{bmatrix}
+    1 \\
+    1 \\
+    2
+  \end{bmatrix}$
+  löses enkelt med $X=e^{A(t-a)}X(a)$
+\item
+  $\begin{bmatrix}
+    x_1(t) \\
+    x_2(t)
+  \end{bmatrix}
+  = e^{At} \begin{bmatrix}
+    x_1(0) \\
+    x_2(0)
+  \end{bmatrix} $
+\end{itemize}
+
+\section{Symmetriska matriser}
+\begin{itemize}
+\item
+  ... innehåller inte imaginära egenvärden
+\item Alla $d_i>0$: positivt definit matris
+\item Alla $d_i<0$: negativt definit matris
+\item Alla $d_i\geq0$: positivt semidefinit matris
+\item Alla $d_i\leq0$: negativt semidefinit matris
+\item Matrisen har både $d_i<0$ och $d_i>0$: indefinit matris
+\item
+  $K-aI \Rightarrow$ antalet negativa pivåelement $d_i$ är samma som antalet egenvärden $< a$
+\item
+  Egenvektorer som hör till skilda egenvärden är ortogonala
+\end{itemize}
+
+\section{Diagonaliserbara matriser}
+\begin{itemize}
+\item
+  Ett bra exempel på en icke-diagonaliserbar matris är
+  $\begin{bmatrix}
+    0 & 1 \\
+    0 & 0
+  \end{bmatrix}$
+\item
+  Alla egenvärden är unika $\Rightarrow$ Matrisen är diagonaliserbar
+\item
+  Matrisen är diagonaliserbar $\nRightarrow$ Alla egenvärden är unika \\
+  (Eftersom en redan diagonal matris kan ha icke-unika egenvärden)  
+\end{itemize}
+
+\end{document}
